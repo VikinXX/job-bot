@@ -1,0 +1,38 @@
+# ============================================
+# CONFIGURACIÓN LOCAL - TUS VALORES REALES
+# ============================================
+# 1. Copia este archivo desde config.yaml
+# 2. Edita SOLO los valores que necesites cambiar
+# 3. NO subas este archivo a git (está en .gitignore)
+
+api_keys:
+  rapidapi_key: "TU_RAPIDAPI_KEY_AQUI"     # De RapidAPI > JSearch > Security
+  groq_key: "gsk_TU_GROQ_KEY_AQUI"         # De console.groq.com/keys
+
+telegram:
+  bot_token: "123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ"  # De @BotFather
+  chat_id: "987654321"                            # De getUpdates o @userinfobot
+
+# --- Opcional: sobrescribe solo lo que quieras cambiar ---
+# search:
+#   keywords:
+#     - "Python Developer"
+#     - "Backend Engineer"
+#   locations:
+#     - "Spain"
+#     - "Remote"
+
+# profile:
+#   target_role: "Senior Python Backend Developer"
+#   years_experience: 5
+#   core_skills:
+#     - "Python"
+#     - "Django"
+#     - "FastAPI"
+#     - "PostgreSQL"
+
+# scoring:
+#   min_score_to_notify: 6
+
+# scheduler:
+#   interval_minutes: 30

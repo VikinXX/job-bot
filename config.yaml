@@ -1,0 +1,140 @@
+# ============================================
+# CONFIGURACIÓN DEL BOT DE OFERTAS LINKEDIN
+# ============================================
+# Copia este archivo a config.local.yaml y edita tus valores
+# NO subas config.local.yaml a git (contiene secrets)
+
+# --- API Keys (obligatorios) ---
+api_keys:
+  rapidapi_key: ""      # Tu key de RapidAPI (JSearch)
+  groq_key: ""          # Tu key de Groq (gratis en console.groq.com)
+
+# --- Telegram (obligatorios) ---
+telegram:
+  bot_token: ""         # Token de @BotFather
+  chat_id: ""           # Tu chat ID numérico
+
+# --- Preferencias de búsqueda (personaliza esto) ---
+search:
+  # Palabras clave para buscar (OR entre ellas)
+  keywords:
+    - "Python Developer"
+    - "Backend Developer"
+    - "Software Engineer Python"
+    - "Django Developer"
+    - "FastAPI Developer"
+    - "Data Engineer Python"
+
+  # Ubicaciones (vacío = global/remoto)
+  locations:
+    - "Spain"
+    - "Madrid"
+    - "Barcelona"
+    - "Remote"
+
+  # Filtros adicionales
+  job_type: "fulltime"           # fulltime, parttime, contractor, intern
+  experience_level: ""           # entry_level, associate, mid_senior, director, executive (vacío = todos)
+  remote_filter: "remote"        # remote, onsite, hybrid (vacío = todos)
+  date_posted: "month"           # today, 3days, week, month
+
+  # Páginas por búsqueda (cada página ~10 resultados)
+  pages_per_search: 2
+
+# --- Tu perfil profesional (para que la IA puntúe bien) ---
+profile:
+  # Título actual/objetivo
+  target_role: "Senior Python Backend Developer"
+
+  # Años de experiencia
+  years_experience: 5
+
+  # Stack técnico principal (lo que SABES bien)
+  core_skills:
+    - "Python"
+    - "Django"
+    - "FastAPI"
+    - "PostgreSQL"
+    - "Redis"
+    - "Docker"
+    - "Kubernetes"
+    - "AWS"
+    - "CI/CD"
+    - "Microservicios"
+    - "REST APIs"
+    - "GraphQL"
+    - "Testing (pytest)"
+
+  # Skills secundarias (bonus)
+  nice_to_have_skills:
+    - "Go"
+    - "TypeScript"
+    - "React"
+    - "Terraform"
+    - "Kafka"
+    - "Elasticsearch"
+
+  # Qué NO quieres (palabras que penalizan)
+  dealbreakers:
+    - "PHP"
+    - "WordPress"
+    - "Magento"
+    - "Salesforce"
+    - "SAP"
+    - "Mainframe"
+    - "COBOL"
+    - "Visual Basic"
+    - "jQuery only"
+    - "legacy only"
+
+  # Preferencias de trabajo
+  preferences:
+    remote_first: true           # Prioriza remoto
+    min_salary_eur: 45000        # Salario mínimo anual (bruto)
+    max_salary_eur: 80000        # Salario máximo (para filtrar irreales)
+    english_required: true       # Requiere inglés
+    spanish_required: true       # Requiere español
+    visa_sponsorship: false      # Necesitas visa
+    no_travel: true              # Sin viajes frecuentes
+    team_size_preference: "medium"  # small, medium, large, any
+
+  # Resumen breve para la IA (contexto extra)
+  bio: |
+    Desarrollador Backend Senior con 5+ años en Python (Django/FastAPI).
+    Experto en arquitectura de microservicios, APIs REST/GraphQL, bases de datos
+    PostgreSQL/Redis, contenedores Docker/Kubernetes, cloud AWS.
+    Busco roles 100% remoto o híbrido flexible, equipo técnico sólido,
+    buenas prácticas (testing, CI/CD, clean code). Inglés C1, español nativo.
+
+# --- Configuración del scoring IA ---
+scoring:
+  model: "llama-3.3-70b-versatile"  # Modelo Groq (gratis, rápido)
+  temperature: 0.1                   # Determinístico
+  max_tokens: 500
+
+  # Pesos para el score final 1-10 (deben sumar ~1.0)
+  weights:
+    skills_match: 0.35       # Qué tan bien matchan tus skills
+    experience_match: 0.20   # Nivel de experiencia adecuado
+    salary_match: 0.15       # Salario en rango
+    location_match: 0.10     # Remoto/ubicación preferida
+    culture_match: 0.10      # Valores, stack moderno, prácticas
+    growth_potential: 0.10   # Oportunidad de crecer/aprender
+
+  # Umbral mínimo para notificar (1-10)
+  min_score_to_notify: 6
+
+# --- Scheduling ---
+scheduler:
+  interval_minutes: 30        # Cada cuánto buscar
+  timezone: "Europe/Madrid"   # Tu zona horaria
+  run_on_start: true          # Ejecutar al iniciar
+
+# --- Base de datos ---
+database:
+  path: "data/jobs.db"        # SQLite para guardar ofertas vistas
+
+# --- Logging ---
+logging:
+  level: "INFO"
+  file: "logs/bot.log"

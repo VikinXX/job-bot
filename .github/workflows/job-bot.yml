@@ -1,0 +1,73 @@
+name: LinkedIn Job Bot
+
+on:
+  schedule:
+    # Cada 30 min (cron: "*/30 * * * *")
+    # Cada hora (cron: "0 * * * *") - recomendado para repo privado
+    - cron: "0 * * * *"
+  workflow_dispatch:  # Botón "Run workflow" manual
+
+permissions:
+  contents: read
+  actions: read  # Para cache
+
+jobs:
+  job-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore SQLite database (cache)
+        uses: actions/cache@v4
+        with:
+          path: data/jobs.db
+          key: job-db-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            job-db-${{ runner.os }}-
+
+      - name: Create config.local.yaml from secrets
+        run: |
+          cat > config.local.yaml << 'EOF'
+          api_keys:
+            rapidapi_key: "${{ secrets.RAPIDAPI_KEY }}"
+            groq_key: "${{ secrets.GROQ_KEY }}"
+          telegram:
+            bot_token: "${{ secrets.TELEGRAM_BOT_TOKEN }}"
+            chat_id: "${{ secrets.TELEGRAM_CHAT_ID }}"
+          scheduler:
+            run_on_start: true
+            interval_minutes: 60  # Solo relevante si fuera daemon
+          EOF
+
+      - name: Run Job Bot (single execution)
+        run: |
+          python -c "
+          import asyncio
+          from job_bot import job_bot
+          async def main():
+              await job_bot.initialize()
+              stats = await job_bot.run_once()
+              print(f'Stats: {stats}')
+              await job_bot.shutdown()
+          asyncio.run(main())
+          "
+
+      - name: Save SQLite database (cache)
+        uses: actions/cache@v4
+        if: always()
+        with:
+          path: data/jobs.db
+          key: job-db-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
