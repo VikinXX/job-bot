@@ -18,18 +18,14 @@ telegram:
 search:
   # Palabras clave para buscar (OR entre ellas)
   keywords:
-    - "Python Developer"
     - "Backend Developer"
-    - "Software Engineer Python"
-    - "Django Developer"
-    - "FastAPI Developer"
-    - "Data Engineer Python"
+    - "Full Stack Engineer"
+    - "Full Stack Developer"
 
   # Ubicaciones (vacío = global/remoto)
   locations:
     - "Spain"
     - "Madrid"
-    - "Barcelona"
     - "Remote"
 
   # Filtros adicionales
@@ -44,39 +40,33 @@ search:
 # --- Tu perfil profesional (para que la IA puntúe bien) ---
 profile:
   # Título actual/objetivo
-  target_role: "Senior Python Backend Developer"
+  target_role: "Junior Full Stack Developer"
 
   # Años de experiencia
-  years_experience: 5
+  years_experience: 1
 
   # Stack técnico principal (lo que SABES bien)
   core_skills:
-    - "Python"
-    - "Django"
-    - "FastAPI"
-    - "PostgreSQL"
-    - "Redis"
+    - "PHP"
+    - "React"
+    - "Angular"
+    - "SQL"
+    - "MySQL"
     - "Docker"
-    - "Kubernetes"
     - "AWS"
-    - "CI/CD"
-    - "Microservicios"
-    - "REST APIs"
-    - "GraphQL"
-    - "Testing (pytest)"
+    - "Java"
+    - ".NET"
+    - "Power Platform"
+    - "Azure"
 
   # Skills secundarias (bonus)
   nice_to_have_skills:
-    - "Go"
     - "TypeScript"
-    - "React"
-    - "Terraform"
-    - "Kafka"
-    - "Elasticsearch"
+    - "JavaScript"
 
   # Qué NO quieres (palabras que penalizan)
   dealbreakers:
-    - "PHP"
+    - "Python"
     - "WordPress"
     - "Magento"
     - "Salesforce"
@@ -84,14 +74,13 @@ profile:
     - "Mainframe"
     - "COBOL"
     - "Visual Basic"
-    - "jQuery only"
     - "legacy only"
 
   # Preferencias de trabajo
   preferences:
     remote_first: true           # Prioriza remoto
-    min_salary_eur: 45000        # Salario mínimo anual (bruto)
-    max_salary_eur: 80000        # Salario máximo (para filtrar irreales)
+    min_salary_eur: 24000        # Salario mínimo anual (bruto)
+    max_salary_eur: 35000        # Salario máximo (para filtrar irreales)
     english_required: true       # Requiere inglés
     spanish_required: true       # Requiere español
     visa_sponsorship: false      # Necesitas visa
@@ -100,9 +89,9 @@ profile:
 
   # Resumen breve para la IA (contexto extra)
   bio: |
-    Desarrollador Backend Senior con 5+ años en Python (Django/FastAPI).
-    Experto en arquitectura de microservicios, APIs REST/GraphQL, bases de datos
-    PostgreSQL/Redis, contenedores Docker/Kubernetes, cloud AWS.
+    Desarrollador Full Stack Junior con 4 meses de prácticas de experiencia en APPIAN.
+    Experto en desarrollo Full Stack, PHP, Java, JavaScript, TypeScript, bases de datos
+    SQL/MySQL, contenedores Docker, cloud AWS, .NET.
     Busco roles 100% remoto o híbrido flexible, equipo técnico sólido,
     buenas prácticas (testing, CI/CD, clean code). Inglés C1, español nativo.
 
