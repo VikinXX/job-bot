@@ -4,7 +4,7 @@ on:
   schedule:
     # Cada 30 min (cron: "*/30 * * * *")
     # Cada hora (cron: "0 * * * *") - recomendado para repo privado
-    - cron: "0 * * * *"
+    - cron: "*/20 * * * *"
   workflow_dispatch:  # Botón "Run workflow" manual
 
 permissions:
