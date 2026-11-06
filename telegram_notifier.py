@@ -166,6 +166,20 @@ class TelegramNotifier:
             logger.error(f"Error conectando con Telegram: {e}")
             return False
 
+    async def send_message(self, text: str) -> bool:
+        """Envía un mensaje genérico a Telegram."""
+        try:
+            await self.bot.send_message(
+                chat_id=self.chat_id,
+                text=text,
+                parse_mode="HTML",
+                disable_web_page_preview=True,
+            )
+            return True
+        except TelegramError as e:
+            logger.error(f"Error enviando mensaje a Telegram: {e}")
+            return False
+
 
 # Instancia global
 telegram_notifier = TelegramNotifier()

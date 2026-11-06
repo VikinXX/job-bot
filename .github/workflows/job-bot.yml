@@ -59,8 +59,7 @@ jobs:
           from job_bot import job_bot
           async def main():
               await job_bot.initialize()
-              stats = await job_bot.run_once()
-              print(f'Stats: {stats}')
+              await job_bot.run_scheduled()
               await job_bot.shutdown()
           asyncio.run(main())
           "

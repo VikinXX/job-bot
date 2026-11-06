@@ -68,6 +68,12 @@ class JobBot:
                 stats["found"],
                 0,
             )
+            # Notificar que no hay ofertas nuevas
+            await telegram_notifier.send_message(
+                "🔍 <b>Búsqueda completada</b>\n\n"
+                f"Se encontraron {stats['found']} ofertas totales, pero <b>ninguna es nueva</b> "
+                f"(ya las habías visto en búsquedas anteriores)."
+            )
             return stats
 
         # 3. Puntuar y notificar cada oferta nueva
@@ -121,6 +127,15 @@ class JobBot:
             stats["new"],
             error=None if stats["errors"] == 0 else f"{stats['errors']} errores",
         )
+
+        # Notificar si hay ofertas nuevas pero ninguna pasa el umbral
+        if stats["new"] > 0 and stats["notified"] == 0:
+            await telegram_notifier.send_message(
+                "🔍 <b>Búsqueda completada</b>\n\n"
+                f"Se encontraron {stats['new']} ofertas nuevas, pero <b>ninguna supera el umbral</b> "
+                f"({self.min_score}/10).\n"
+                f"Revisa los logs para ver los scores."
+            )
 
         logger.info(f"✅ Ciclo completado: {stats}")
         return stats
