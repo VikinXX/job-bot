@@ -49,7 +49,7 @@ jobs:
             chat_id: "${{ secrets.TELEGRAM_CHAT_ID }}"
           scheduler:
             run_on_start: true
-            interval_minutes: 60  # Solo relevante si fuera daemon
+            interval_minutes: 30
           EOF
 
       - name: Run Job Bot (single execution)
