@@ -85,7 +85,7 @@ profile:
     spanish_required: true       # Requiere español
     visa_sponsorship: false      # Necesitas visa
     no_travel: true              # Sin viajes frecuentes
-    team_size_preference: "medium"  # small, medium, large, any
+    team_size_preference: "any"  # small, medium, large, any
 
   # Resumen breve para la IA (contexto extra)
   bio: |
@@ -111,7 +111,7 @@ scoring:
     growth_potential: 0.10   # Oportunidad de crecer/aprender
 
   # Umbral mínimo para notificar (1-10)
-  min_score_to_notify: 6
+  min_score_to_notify: 3
 
 # --- Scheduling ---
 scheduler:
